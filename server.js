@@ -8,8 +8,8 @@ const fs = require('fs');
 
 
 const options = {
-    key: fs.readFileSync('./ecc-key.pem'),
-    cert: fs.readFileSync('./ecc-cert.pem'),
+    key: fs.readFileSync('/home/ec2-user/ec2-user/minesweeper/minesweeper-backend/ecc-key.pem'),
+    cert: fs.readFileSync('/home/ec2-user/ec2-user/minesweeper/minesweeper-backend/ecc-csr.pem'),
     // Include the CA chain if you have it
     // ca: fs.readFileSync('/path/to/your/ca-chain.pem'),
 };
