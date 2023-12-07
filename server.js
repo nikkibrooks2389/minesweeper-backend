@@ -3,18 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const https = require('https');
-const fs = require('fs');
-
-
-const options = {
-    key: fs.readFileSync('/home/ec2-user/ec2-user/minesweeper/minesweeper-backend/ecc-key.pem'),
-    cert: fs.readFileSync('/home/ec2-user/ec2-user/minesweeper/minesweeper-backend/ecc-csr.pem'),
-    // Include the CA chain if you have it
-    // ca: fs.readFileSync('/path/to/your/ca-chain.pem'),
-};
-
-const server = https.createServer(options, app);
 
 // Database configuration
 const mongoURI = process.env.MONGO_URI;
@@ -48,7 +36,7 @@ app.use('/api/leaderboard', require('./routes/leaderboard'));
 // Start server after successful DB connection
 mongoose.connection.once('open', () => {
     const port = process.env.PORT || 3000;
-    server.listen(port, '::', () => {
+    app.listen(port, () => {
         console.log(`Server running on port ${port}`);
     });
 });
