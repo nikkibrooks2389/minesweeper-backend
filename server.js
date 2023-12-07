@@ -3,9 +3,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
+const https = require('https');
 
+
+
+const options = {
+    key: fs.readFileSync('./ecc-key.pem'),
+    cert: fs.readFileSync('./ecc-cert.pem'),
+    // Include the CA chain if you have it
+    // ca: fs.readFileSync('/path/to/your/ca-chain.pem'),
+};
+
+const server = https.createServer(options, app);
 
 // Database configuration
 const mongoURI = process.env.MONGO_URI;
