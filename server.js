@@ -20,8 +20,9 @@ require('./models/LeaderBoard');
 
 const corsOptions = {
     origin: process.env.FRONTEND_URL,
-};
-
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true
+}
 
 // Middlewares
 app.use(cors(corsOptions));
