@@ -3,6 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+
 
 // Database configuration
 const mongoURI = process.env.MONGO_URI;
@@ -36,7 +39,7 @@ app.use('/api/leaderboard', require('./routes/leaderboard'));
 // Start server after successful DB connection
 mongoose.connection.once('open', () => {
     const port = process.env.PORT || 3000;
-    app.listen(port, () => {
+    server.listen(port, '::', () => {
         console.log(`Server running on port ${port}`);
     });
 });
