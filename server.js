@@ -18,14 +18,12 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 require('./models/LeaderBoard');
 
 
-const corsOptions = {
-    origin: process.env.FRONTEND_URL,
+app.use(cors({
+    origin: 'https://minesweeper-master.vercel.app', // Replace with your React app's URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true
-}
+    credentials: true,
+}));
 
-// Middlewares
-app.use(cors(corsOptions));
 app.use(express.json());
 
 
